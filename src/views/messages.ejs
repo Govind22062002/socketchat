@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Real-time Chat App</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style>
+        body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    form {
+        position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0.25rem;
+    }
+
+    form input {
+        border: 0;
+    padding: 0.5rem;
+    width: 100%;
+    outline: 0;
+    margin-left: 0%;
+    margin-right: 0.5rem;
+    border-radius: 0.25rem;
+    background: #ccc;
+    }
+
+    form button {
+        width: 6rem;
+    background-color: #1b8c00;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    }
+
+    form button:hover {
+      background-color: #166d01;
+    }
+
+    .messages {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 3rem;
+    }
+
+    .messages li {
+      padding: 0.5rem;
+    }
+
+    .messages li:nth-child(odd) {
+      background: #eee;
+    }
+    </style>
+</head>
+
+<body>
+    <div style="    height: 75vh;
+    border: 3px solid #09db6f;
+    border-radius: 10px;
+    margin: 1rem 1rem;
+    padding: 0.5rem;
+    overflow: scroll;
+    background-color: #d5ffd5;
+    color: #2e6a2e;">
+        <div>
+            <h1 style="    margin-right: 1em;
+            color: #3fff00; position: fixed; "><img style=" width: 5%;" src="/assets/img/whatsapp.png"> Wassup</h1>
+            <header id="selected" style="width: 67%;
+            text-align: center;
+            position: fixed;
+            left: 29%;
+            color: cadetblue;
+            background: #8ef791;bottom: 87%;">
+
+                <% if(select){ %>
+
+                    <h3>you chat with: <%=select.name %>
+                    </h3>
+                    <option id="chatwith" value="<%=select._id %>" hidden></option>
+                    <% }else{ %>
+                        <h2>you chat with: <%=group.GroupName %>
+                        </h2>
+                        <option id="chatwith" value="<%=group._id %>" hidden></option>
+                        <% }%>
+            </header>
+            <table style="    width: 100%;">
+
+                <tr>
+                    <td style="     position: fixed;
+                    top: 45%;
+                    width: 22%;
+                    bottom: 26%;
+                    overflow: overlay;">
+                        <div>
+                            <ul class="list">
+                                <h3>list of user</h3>
+                                <% for (let i=0; i < data.length ; i++){ %>
+                                    <% if(data[i]._id.toString()==user._id){ %>
+                                        <option id="you" value="<%=user._id %>" hidden></option>
+                                        <% }else { %>
+                                            <li><a href="/messages/<%= data[i]._id %>">
+                                                    <%=data[i].name %>
+                                                </a></li>
+                                            <% } %>
+                                                <% } %>
+
+                            </ul>
+                        </div>
+                        <!-- <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa vel dolor, sit porro soluta at sunt quaerat quia quidem repellat aut id perspiciatis voluptate tempora voluptates labore quibusdam facere similique!</P> -->
+                    </td>
+                    <% if(totalGroup[0]){%>
+                        <td style="    width: 17%;
+                        position: fixed;
+                        bottom: 65%;
+                        overflow: overlay;">
+                            <div>
+                                <ul>
+                                    <h3>list of Groups</h3>
+                                    <% for(let i=0; i < totalGroup.length ; i++){ %>
+                                        <% if(totalGroup[i]._id.toString()==group?._id.toString() ){ %>
+                                            <option id="you" value="<%= totalGroup[i]._id %>">In : <%=
+                                                    totalGroup[i].GroupName%>
+                                            </option>
+                                            <% }else { %>
+                                                <li><a href="/messages/<%= totalGroup[i]._id %>">
+                                                        <%= totalGroup[i].GroupName%>
+                                                    </a></li>
+
+                                                <% } %>
+                                                    <% } %>
+                                </ul>
+                            </div>
+                        </td>
+
+                        <% } %>
+
+                </tr>
+                <div>
+                    <td style="width: 100%;
+                    padding-left: 28%;
+                    padding-top: 6%;scroll-behavior: auto; scroll-padding-inline-end: auto;">
+                        <div>
+                            <ul id="messages">
+                                <% if(chatting){%>
+                                    <% for(let i=0 ;i < chatting.length ; i++){ %>
+                                        <% if(chatting[i].from.toString()==user._id.toString()){ %>
+                                            <li>you :<%=chatting[i].message %>
+                                            </li><br><br>
+                                            <% if(chatting[i].image ){%>
+                                                <img id="img" src="<%=chatting[i].image %>"
+                                                    style="height: 100px;"><br><br>
+                                                <% }%>
+                                                    <% }else if(chatting[i].to.toString()==select._id.toString()){%>
+                                                        <% }else{ %>
+                                                            <span style="float: right;">
+                                                                <%=select.name %>:
+                                                            </span><br>
+                                                            <li style="float: right;">
+                                                                <%=chatting[i].message %>
+                                                            </li><br><br>
+                                                            <img id="img" src="<%=chatting[i].image %>"
+                                                                style="height: 100px;    position: relative;left: 72%;"><br><br>
+                                                            <% } %>
+                                                                <% } %>
+                                                                    <% } %>
+
+                                                                        <% if(groupmsg) { %>
+                                                                            <% for(let i=0 ;i < groupmsg.length ; i++){
+                                                                                %>
+
+                                                                                <% if(groupmsg[i].from.toString()==user._id.toString()){
+                                                                                    %>
+
+                                                                                    <li>you :<%=groupmsg[i].message %>
+                                                                                    </li><br><br>
+                                                                                    <% if(groupmsg[i].image ){%>
+                                                                                        <img id="img"
+                                                                                            src="<%=groupmsg[i].image %>"
+                                                                                            style="height: 100px;"><br><br>
+                                                                                        <% }%>
+                                                                                            <% }else { %>
+                                                                                                <%
+                                                                                                    groupname.filter(obj=>
+                                                                                                    { %>
+                                                                                                    <% if(obj._id.toString()==groupmsg[i].from.toString()
+                                                                                                        ) { %>
+
+                                                                                                        <span
+                                                                                                            style="float: right;">
+                                                                                                            <%=obj.name
+                                                                                                                %>:
+                                                                                                        </span><br>
+                                                                                                        <li
+                                                                                                            style="float: right;">
+                                                                                                            <%=groupmsg[i].message
+                                                                                                                %>
+                                                                                                        </li><br><br>
+                                                                                                        <img id="img"
+                                                                                                            src="<%=groupmsg[i].image %>"
+                                                                                                            style="height: 100px;    position: relative;left: 85%;"><br><br>
+
+                                                                                                        <% } %>
+                                                                                                            <% }) %>
+
+
+
+                                                                                                                <% } %>
+                                                                                                                    <% }
+                                                                                                                        %>
+                                                                                                                        <% }
+                                                                                                                            %>
+                            </ul>
+                        </div>
+                        <div>
+                            <form id="form" action="#" enctype="multipart/form-data" style="width: 100%;">
+                                <input id="input" autocomplete="off" style="    width: 74%; margin-left: 30%;" />
+                                <input id="file" name="image" type="file" style="width: 20%;" />
+                                <img id=”preview” width=”100″></img>
+                                <% if(select){ %>
+                                    <button onclick=userfun('<%=select.id %>','<%= user._id %>') > Send</button>
+                                    <% }else{ %>
+                                        <button onclick=groupfun('<%=group._id %>','<%= user._id %>') > Send</button>
+                                        <% } %>
+                            </form>
+                        </div>
+                    </td>
+                </div>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var messages = document.getElementById('messages');
+        var form = document.getElementById('form');
+        var input = document.getElementById('input');
+        var image = document.getElementById("file")
+        var you = document.getElementById("you")
+        var chatwith = document.getElementById("chatwith")
+       
+        // image send 
+        window.onload = function () {
+            document.getElementById("file").addEventListener("change", function () {
+                submitImage();
+            });
+        };
+        function submitImage() {
+            var selector = document.getElementById('file');
+            var img = document.getElementById('preview');
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                // client send
+                console.log(e.target.result, "e target result");
+                socket.emit('sendImage', [{ base64: e.target.result }, chatwith.value, you.value]);
+            }
+            reader.readAsDataURL(selector.files[0]);
+        }
+        // Client image receive
+        socket.on('receiveImage', function (base64image) {
+            var imgvalue = base64image;
+            var img = `<a target="_blank" href="${base64image.path} "><img id="img" src="${base64image.path}" style="height: 100px;" /></a> <br><br>`;
+
+            $("#messages").append(img);
+        });
+
+        // messages send 
+        function userfun(id, id2) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (input.value) {
+                    socket.emit('chat message', [input.value, id, id2]);
+                    input.value = '';
+                }
+            });
+        }
+        // receve chat message  from server
+        socket.on('chat message', function (msg) {
+            var item = document.createElement('li');
+            item.textContent = msg;
+
+            messages.appendChild(item);
+            window.scrollTo(100, document.body.scrollHeight);
+        });
+        // group message send receve
+        function groupfun(groupid, id2) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (input.value) {
+                    socket.emit('group chat message', [input.value, groupid, id2]);
+                    input.value = '';
+                }
+            });
+        }
+
+        socket.on('group chat message', function (msg) {
+            var item = document.createElement('li');
+            item.textContent = msg;
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+
+
+    </script>
+</body>
+
+</html>

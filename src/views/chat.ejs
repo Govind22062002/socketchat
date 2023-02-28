@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Real-time Chat App</title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    form {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      box-sizing: border-box;
+      padding: 0.25rem;
+    }
+
+    form input {
+      border: 0;
+      padding: 0.5rem;
+      width: 100%;
+      outline: 0;
+      margin-left: 18%;
+      margin-right: 0.5rem;
+      border-radius: 0.25rem;
+      background: #ccc;
+    }
+
+    form button {
+      width: 6rem;
+      background-color: #1b8c00;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      border-radius: 0.25rem;
+      text-transform: uppercase;
+    }
+
+    form button:hover {
+      background-color: #166d01;
+    }
+
+    .messages {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 3rem;
+    }
+
+    .messages li {
+      padding: 0.5rem;
+    }
+
+    .messages li:nth-child(odd) {
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+      <div style="width: 50%; float: left; padding-top: 2em; background: #e2ffdb;position: relative;left: 26%;margin-top: 4em;padding: 50px 0px 32px 40px;
+         border: 2px solid;
+    color: #27bfb1; border-radius: 30px;">
+        <div>
+
+          <div>
+            <h1 style=" border: 2px solid;margin-right: 1em; color: #3fff00; text-align: center;"><img style=" width: 5%;" src="/assets/img/whatsapp.png"> Wassup</h1>
+
+            <a href="/makeGroup" style="padding: 14px 0 0 17%;">
+              <button style="position: relative;left: 62%;" class="btn btn-primary"> new Group</button></a>
+          </div>
+          
+        
+          <table style="    width: 50%;float: left;">
+            <tr>
+              <td >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <ul class="list">
+                    <h3>list of user</h3>
+                    <% for (let i=0; i < data.length ; i++){ %>
+                      <% if(data[i]._id == user._id){ %>
+                      <li hidden>You : <%=user.name  %></li>
+                        <% }else{ %>
+              
+                      <li><a href="messages/<%= data[i]._id %>" ><%=data[i].name %></a></li>
+                      <% } %>
+                      <% } %>
+                  </ul>
+                </div>
+              </td>
+              <td >
+                <ul id="messages">
+        
+                </ul>
+               
+              </td>
+            </tr>
+           
+          </table>
+          <% if(group[0]){ %>
+          <table>
+            <tr>
+              <td>
+                <div>
+          <span><h3> list of Groups </h3></span>
+              </div> 
+            </td>
+            </tr>
+            <tr>
+              <td>
+                <ul>
+                  <% for (let i= 0 ; i< group.length ; i++){ %>
+                      <li><a href="messages/<%= group[i]._id %>"><%= group[i].GroupName %> </a></li>
+                    <% } %>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        <% } %>
+        </div>
+      </div>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+</body>
+</html>
