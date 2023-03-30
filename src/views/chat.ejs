@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en">
 
 <head>
-  <title>Real-time Chat App</title>
-  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <title>Messenger</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/core/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" />
+  <link rel="stylesheet" href="/forms/style.css" />
 
-  <style>
+  <!-- <style>
     body {
       margin: 0;
       font-family: sans-serif;
@@ -61,80 +69,279 @@
     .messages li:nth-child(odd) {
       background: #eee;
     }
-  </style>
+  </style> -->
+
 </head>
 
 <body>
-  <div>
-      <div style="width: 50%; float: left; padding-top: 2em; background: #e2ffdb;position: relative;left: 26%;margin-top: 4em;padding: 50px 0px 32px 40px;
-         border: 2px solid;
-    color: #27bfb1; border-radius: 30px;">
-        <div>
-
-          <div>
-            <h1 style=" border: 2px solid;margin-right: 1em; color: #3fff00; text-align: center;"><img style=" width: 5%;" src="/assets/img/whatsapp.png"> Wassup</h1>
-
-            <a href="/makeGroup" style="padding: 14px 0 0 17%;">
-              <button style="position: relative;left: 62%;" class="btn btn-primary"> new Group</button></a>
-          </div>
-          
-        
-          <table style="    width: 50%;float: left;">
-            <tr>
-              <td >
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div>
-                  <ul class="list">
-                    <h3>list of user</h3>
-                    <% for (let i=0; i < data.length ; i++){ %>
-                      <% if(data[i]._id == user._id){ %>
-                      <li hidden>You : <%=user.name  %></li>
-                        <% }else{ %>
-              
-                      <li><a href="messages/<%= data[i]._id %>" ><%=data[i].name %></a></li>
-                      <% } %>
-                      <% } %>
-                  </ul>
+  <div class="main-wrapper">
+    <div class="container" style="margin-left: 36%;">
+      <div class="page-content">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-md-4 col-12 card-stacked">
+              <div class="card shadow-line mb-3 chat">
+                <div class="chat-user-detail">
+                  <div class="p-3 chat-header">
+                    <div class="w-100">
+                      <div class="d-flex pl-0">
+                        <div class="d-flex flex-row mt-1 mb-1">
+                          <span class="margin-auto mr-2">
+                            <a href="#"
+                              class="user-undetail-trigger btn btn-sm btn-icon btn-light active text-dark ml-2">
+                              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                              </svg>
+                            </a>
+                          </span>
+                          <p class="margin-auto fw-400 text-dark-75">Profile</p>
+                        </div>
+                        <div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-3 chat-user-info">
+                    <div class="card-body text-center">
+                      <a href="#!">
+                        <img
+                          src="https://user-images.githubusercontent.com/35243461/168796876-2e363a49-b32c-4218-b5a3-ce12493af69e.jpg"
+                          class="rounded-circle img-fluid shadow avatar-xxl">
+                      </a>
+                      <!-- <label for="uploads" class="btn btn-sm btn-primary mb-75 me-75 waves-effect waves-float waves-light">upload</label>
+                      <input type="file"> -->
+                      <div class="pt-4 text-center animate4">
+                        <h6 class="fw-300 mb-1"><%=user.name %></h6>
+                        <p class="text-muted">Web Developer</p>
+                        <div class="mt-4">
+                          <a href="#" class="btn btn-light-skype btn-icon btn-circle btn-sm btn-shadow mr-2"><i
+                              class="bx bxl-skype"></i></a>
+                          <a href="#" class="btn btn-light-facebook btn-icon btn-circle btn-sm btn-shadow mr-2"><i
+                              class="bx bxl-facebook"></i></a>
+                          <a href="#" class="btn btn-light-twitter btn-icon btn-circle btn-sm btn-shadow mr-2"><i
+                              class="bx bxl-twitter"></i></a>
+                          <a href="#" class="btn btn-light-instagram btn-icon btn-circle btn-sm btn-shadow mr-2"><i
+                              class="bx bxl-instagram"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </td>
-              <td >
-                <ul id="messages">
-        
-                </ul>
+                <div class="p-3 chat-header">
+                  <div class="d-flex">
+                    <div class="w-100 d-flex pl-0">
+                      <img class="user-detail-trigger rounded-circle shadow avatar-sm mr-3 chat-profile-picture"
+                        src="https://user-images.githubusercontent.com/35243461/168796876-2e363a49-b32c-4218-b5a3-ce12493af69e.jpg" />
+
+                        <p class="fw-400 mb-0 text-dark-75"><%=user.name %> <span class="status green"></span></p>
+                
+                      </div>
+                      
+                    <div class="flex-shrink-0 margin-auto">
+                      <a href="#" class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                        <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2"
+                          fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather">
+                          <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                          <polyline points="17 2 12 7 7 2"></polyline>
+                        </svg>
+                      </a>
+                      <a href="#" class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                        <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2"
+                          fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather">
+                          <path id="secondary" d="M15,18H9a3,3,0,0,0,3,3h0A3,3,0,0,0,15,18Z" style="fill: none; stroke: rgb(44, 169, 188); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><path id="primary" d="M19.38,14.38a2.12,2.12,0,0,1,.62,1.5h0A2.12,2.12,0,0,1,17.88,18H6.12A2.12,2.12,0,0,1,4,15.88H4a2.12,2.12,0,0,1,.62-1.5L6,13V9a6,6,0,0,1,6-6h0a6,6,0,0,1,6,6v4Z" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>
+                        </svg>
+                      </a>
+                      <a href="#" class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                        <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2"
+                          fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                        </svg>
+                      </a>
+                      <div id="hover" onmouseleave="hide()" class="outer" style="    display: inline-block;
+                      position: relative;" hidden>
+                        <div class="inner" style="    position: absolute;
+                        left: -69px;
+                        z-index: 1;
+                        top: 16px;
+                        background-color: gray;
+                        padding: 7px 26px 0px 0;
+                        border-radius: 5px;
+                        color: white;">
+                          <ul style="    list-style: none;">
+                            <li><a href="/makeGroup" style="color: white;">makeGroup</a></li>
+                            <li><a href="/logout/<%=user._id %>" style="color: white;">logout</a></li>
+
+
+                          </ul>
+                        </div>
+                      </div>
+                      <a href="#" onmouseover="hover()" class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                        <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2"
+                          fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather">
+                          <circle cx="12" cy="12" r="1"></circle>
+                          <circle cx="12" cy="5" r="1"></circle>
+                          <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-search pl-3 pr-3">
+                  <div class="input-group">
+                    <input type="text" id="Search" class="form-control" placeholder="Search a conversation">
+                    <div class="input-group-append prepend-white">
+                      <span class="input-group-text pl-2 pr-2">
+                        <i class="fs-17 las la-search drop-shadow"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
                
-              </td>
-            </tr>
-           
-          </table>
-          <% if(group[0]){ %>
-          <table>
-            <tr>
-              <td>
-                <div>
-          <span><h3> list of Groups </h3></span>
-              </div> 
-            </td>
-            </tr>
-            <tr>
-              <td>
-                <ul>
-                  <% for (let i= 0 ; i< group.length ; i++){ %>
-                      <li><a href="messages/<%= group[i]._id %>"><%= group[i].GroupName %> </a></li>
-                    <% } %>
-                </ul>
-              </td>
-            </tr>
-          </table>
-        <% } %>
+                <div class="chat-user-panel" style="overflow: auto;">
+                  <div class="pb-3 d-flex flex-column navigation-mobile pagination-scrool chat-user-scroll">
+                    <% for (let i=0; i < data.length ; i++){ %>
+                      <% if(data[i]._id==user._id){ %>
+                        <li hidden>You : <%=user.name %>
+                        </li>
+                        <% }else{ %>
+                          <div class="chat-item d-flex pl-3 pr-0 pt-3 pb-3">
+                            <a href="messages/<%= data[i]._id %>"
+                              onclick="clickfun('<%= data[i]._id %>','<%=user._id %>')" style="    width: 81%;">
+                              <div class="w-100">
+                                <div class="d-flex pl-0">
+                                  <img class="rounded-circle shadow avatar-sm mr-3"
+                                    src="https://user-images.githubusercontent.com/35243461/168796884-ee3aafb6-8083-48ec-9cfb-51b95eae08fe.jpg">
+                                  <div>
+
+                                    <p class="margin-auto fw-400 text-dark-75">
+                                      <%=data[i].name %>
+                                    </p>
+                                       
+                                    <% if(data[i].status == "online") { %>
+                                    <div class="d-flex flex-row mt-1">
+                                      <small id="login">
+                                        <span class="status green"></span>  <%=data[i].message %> </small>
+                                     
+                                     
+                                        <span> 
+                                          <div class="svg15 double-check"></div>
+                                        </span>
+                                      </div>
+                                     <% } else { %>
+                                      <div class="d-flex flex-row mt-1">
+                                        <small id="login">
+                                          <span class="status orange"></span>
+                                          <%=data[i].message %> 
+                                        </small>
+                                       
+                                        
+                                        <span>
+                                          <div class="svg15 double-check"></div>
+                                        </span>
+                                      </div>
+                                     <% } %>
+                                     
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                            <div class="flex-shrink-0 margin-auto pl-2 pr-3">
+                              <div class="d-flex flex-column">
+                                <p class="text-muted text-right fs-13 mb-2">08:55</p>
+                                <div class="text-right d-flex flex-row">
+                                  <span>
+                                    <div class="svg18 pinned"></div>
+                                  </span>
+                                  <i class="text-muted la la-angle-down ml-1 fs-15"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <% } %>
+                            <% } %>
+                             <!-- <% if(group[0]){ %>
+
+                                <% for (let i=0 ; i< group.length ; i++){ %>
+                                    <div class="chat-item d-flex pl-3 pr-0 pt-3 pb-3">
+                                      <a href="messages/<%= group[i]._id %>"
+                                        onclick=clickfun(<%=group[i]._id %>,<%=user._id %> ) >
+                                        <div class="w-100">
+                                          <div class="d-flex pl-0">
+                                            <img class="rounded-circle shadow avatar-sm mr-3"
+                                              src="https://user-images.githubusercontent.com/35243461/168796884-ee3aafb6-8083-48ec-9cfb-51b95eae08fe.jpg">
+                                            <div>
+          
+                                              <p class="margin-auto fw-400 text-dark-75">
+                                                <%=group[i].name %>
+                                              </p>
+                                              <div class="d-flex flex-row mt-1">
+                                                <span>
+                                                  <div class="svg15 double-check"></div>
+                                                </span>
+                                                <span class="message-shortcut margin-auto text-muted fs-13 ml-1 mr-4">I'm
+                                                  looking forward to it</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </a>
+                                      <div class="flex-shrink-0 margin-auto pl-2 pr-3">
+                                        <div class="d-flex flex-column">
+                                          <p class="text-muted text-right fs-13 mb-2">08:55</p>
+                                          <div class="text-right d-flex flex-row">
+                                            <span>
+                                              <div class="svg18 pinned"></div>
+                                            </span>
+                                            <i class="text-muted la la-angle-down ml-1 fs-15"></i>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  <% } %>
+                                    <% } %> -->
+                  </div>
+                </div>
+               </div>
+            </div>
+             </div>
         </div>
       </div>
+    </div>
   </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-
+  <script>
+    var socket = io();
+  </script>
 </body>
+<script src="/forms/script.js"></script>
+<script>
+  function hover() {
+    const click = document.getElementById("hover")
+    // console.log(click, "click ");
+    click.hidden = false;
+  }
+  function hide() {
+    const click = document.getElementById("hover")
+    // console.log(click, "click ");
+    click.hidden = true;
+  }
+</script>
+<script>
+     const search = document.getElementById("searh")
+     console.log(Search.value);
+     $.ajax({
+      url : "/searchBar",
+      type : "GET",
+      data : {search :search.value },
+      success : function (result) {
+        console.log(result ,"result");
+      }
+     })
+</script>
 </html>

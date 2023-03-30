@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const chatSchema = mongoose.Schema({
     createdBy : String ,
-    GroupName : String,
+    name : String,
     AdminId : Array ,
     chatType : String,
     chatId : Array,

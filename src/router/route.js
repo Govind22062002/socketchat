@@ -14,9 +14,11 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage })
 const router = express.Router() ;
 
-const {login,register,registerPost,postLogin,socketIndex,messages,makeGroup,groupId ,isAuth} = require("../controler/controler")
+const {login,logout,register,registerPost,postLogin,socketIndex,messages,makeGroup,groupId,makeCall,
+  makeGroupCall,makeCallRoom,callRemove,searchBar,isAuth} = require("../controler/controler")
 
-router.get("/" , login);
+router.get("/", login);
+router.get("/logout/:id", logout);
 router.get("/register", register)
 router.post("/postRegister" ,registerPost)
 router.post("/postLogin" , postLogin)
@@ -24,4 +26,12 @@ router.get("/index",isAuth ,socketIndex )
 router.get("/messages/:id",isAuth, messages)
 router.get("/makeGroup", isAuth , makeGroup );
 router.get("/groupId/:id/:groupName", isAuth , groupId)
+
+router.get("/tryTocall/:id/:userId",isAuth, makeCall )
+router.get("/tryToGroupcall/:id/:userId",isAuth, makeGroupCall )
+
+router.get('/videoCall/:id/:room' , makeCallRoom)
+router.get("/callRemove/:room", callRemove  )
+router.get("/searchBar", searchBar)
+
 module.exports = router ;

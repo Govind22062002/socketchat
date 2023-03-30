@@ -4,7 +4,8 @@ const registerSchema = mongoose.Schema({
     username : String,
     email : String,
     name : String,
-    password : String
+    password : String,
+    status : String
 })
 
 const register = mongoose.model("socketRegister",registerSchema);

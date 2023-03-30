@@ -1,254 +1,795 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en">
 
 <head>
-    <title>Real-time Chat App</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>Messenger</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/core/css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="/forms/style.css" />
+
     <style>
         body {
-      margin: 0;
-      font-family: sans-serif;
-    }
+            margin: 0;
+            font-family: sans-serif;
+        }
 
-    form {
-        position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    box-sizing: border-box;
-    padding: 0.25rem;
-    }
+        form {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            box-sizing: border-box;
+            padding: 0.25rem;
+        }
 
-    form input {
-        border: 0;
-    padding: 0.5rem;
-    width: 100%;
-    outline: 0;
-    margin-left: 0%;
-    margin-right: 0.5rem;
-    border-radius: 0.25rem;
-    background: #ccc;
-    }
+        form input {
+            border: 0;
+            padding: 0.5rem;
+            width: 100%;
+            outline: 0;
+            margin-left: 0%;
+            margin-right: 0.5rem;
+            border-radius: 0.25rem;
+            background: #ccc;
+        }
 
-    form button {
-        width: 6rem;
-    background-color: #1b8c00;
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    border-radius: 0.25rem;
-    text-transform: uppercase;
-    }
+        form button {
+            width: 6rem;
+            background-color: #1b8c00;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            text-transform: uppercase;
+        }
 
-    form button:hover {
-      background-color: #166d01;
-    }
+        form button:hover {
+            background-color: #166d01;
+        }
 
-    .messages {
-      margin: 0;
-      padding: 0;
-      margin-bottom: 3rem;
-    }
+        .messages {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 3rem;
+        }
 
-    .messages li {
-      padding: 0.5rem;
-    }
+        .messages li {
+            padding: 0.5rem;
+        }
 
-    .messages li:nth-child(odd) {
-      background: #eee;
-    }
+        .messages li:nth-child(odd) {
+            background: #eee;
+        }
     </style>
+
 </head>
 
 <body>
-    <div style="    height: 75vh;
-    border: 3px solid #09db6f;
-    border-radius: 10px;
-    margin: 1rem 1rem;
-    padding: 0.5rem;
-    overflow: scroll;
-    background-color: #d5ffd5;
-    color: #2e6a2e;">
-        <div>
-            <h1 style="    margin-right: 1em;
-            color: #3fff00; position: fixed; "><img style=" width: 5%;" src="/assets/img/whatsapp.png"> Wassup</h1>
-            <header id="selected" style="width: 67%;
-            text-align: center;
-            position: fixed;
-            left: 29%;
-            color: cadetblue;
-            background: #8ef791;bottom: 87%;">
+    <div class="main-wrapper">
+        <div class="container">
+            <div class="page-content">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-4 col-12 card-stacked">
+                            <div class="card shadow-line mb-3 chat">
+                                <div class="chat-user-detail">
+                                    <div class="p-3 chat-header">
+                                        <div class="w-100">
+                                            <div class="d-flex pl-0">
+                                                <div class="d-flex flex-row mt-1 mb-1">
+                                                    <span class="margin-auto mr-2">
+                                                        <a href="#"
+                                                            class="user-undetail-trigger btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                            <svg viewBox="0 0 24 24" width="18" height="18"
+                                                                stroke="currentColor" stroke-width="2" fill="none"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather">
+                                                                <polyline points="15 18 9 12 15 6"></polyline>
+                                                            </svg>
+                                                        </a>
+                                                    </span>
+                                                    <p class="margin-auto fw-400 text-dark-75">Profile</p>
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 chat-user-info">
+                                        <div class="card-body text-center">
+                                            <a href="#!">
+                                                <img src="https://user-images.githubusercontent.com/35243461/168796876-2e363a49-b32c-4218-b5a3-ce12493af69e.jpg"
+                                                    class="rounded-circle img-fluid shadow avatar-xxl">
+                                            </a>
+                                            <div class="pt-4 text-center animate4">
+                                                <h6 class="fw-300 mb-1">Quan Albert</h6>
+                                                <p class="text-muted">Web Developer</p>
+                                                <div class="mt-4">
+                                                    <a href="#"
+                                                        class="btn btn-light-skype btn-icon btn-circle btn-sm btn-shadow mr-2"><i
+                                                            class="bx bxl-skype"></i></a>
+                                                    <a href="#"
+                                                        class="btn btn-light-facebook btn-icon btn-circle btn-sm btn-shadow mr-2"><i
+                                                            class="bx bxl-facebook"></i></a>
+                                                    <a href="#"
+                                                        class="btn btn-light-twitter btn-icon btn-circle btn-sm btn-shadow mr-2"><i
+                                                            class="bx bxl-twitter"></i></a>
+                                                    <a href="#"
+                                                        class="btn btn-light-instagram btn-icon btn-circle btn-sm btn-shadow mr-2"><i
+                                                            class="bx bxl-instagram"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 chat-header">
+                                    <div class="d-flex">
+                                        <div class="w-100 d-flex pl-0">
+                                            <img class="user-detail-trigger rounded-circle shadow avatar-sm mr-3 chat-profile-picture"
+                                                src="https://user-images.githubusercontent.com/35243461/168796876-2e363a49-b32c-4218-b5a3-ce12493af69e.jpg" />
+                                            <p class="fw-400 mb-0 text-dark-75">
+                                                <%=user.name %>
+                                            </p>
+                                        </div>
+                                        <div class="flex-shrink-0 margin-auto">
+                                            <a href="#" class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor"
+                                                    stroke-width="2" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="feather">
+                                                    <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                                                    <polyline points="17 2 12 7 7 2"></polyline>
+                                                </svg>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor"
+                                                    stroke-width="2" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="feather">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor"
+                                                    stroke-width="2" fill="none" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="feather">
+                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                    <circle cx="12" cy="5" r="1"></circle>
+                                                    <circle cx="12" cy="19" r="1"></circle>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-search pl-3 pr-3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search a conversation">
+                                        <div class="input-group-append prepend-white">
+                                            <span class="input-group-text pl-2 pr-2">
+                                                <i class="fs-17 las la-search drop-shadow"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <% if(select){ %>
+                                <div class="chat-user-panel" style="overflow: auto;">
+                                    <div
+                                        class="pb-3 d-flex flex-column navigation-mobile pagination-scrool chat-user-scroll">
 
-                    <h3>you chat with: <%=select.name %>
-                    </h3>
-                    <option id="chatwith" value="<%=select._id %>" hidden></option>
-                    <% }else{ %>
-                        <h2>you chat with: <%=group.GroupName %>
-                        </h2>
-                        <option id="chatwith" value="<%=group._id %>" hidden></option>
-                        <% }%>
-            </header>
-            <table style="    width: 100%;">
-
-                <tr>
-                    <td style="     position: fixed;
-                    top: 45%;
-                    width: 22%;
-                    bottom: 26%;
-                    overflow: overlay;">
-                        <div>
-                            <ul class="list">
-                                <h3>list of user</h3>
-                                <% for (let i=0; i < data.length ; i++){ %>
-                                    <% if(data[i]._id.toString()==user._id){ %>
-                                        <option id="you" value="<%=user._id %>" hidden></option>
-                                        <% }else { %>
-                                            <li><a href="/messages/<%= data[i]._id %>">
-                                                    <%=data[i].name %>
-                                                </a></li>
-                                            <% } %>
-                                                <% } %>
-
-                            </ul>
-                        </div>
-                        <!-- <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa vel dolor, sit porro soluta at sunt quaerat quia quidem repellat aut id perspiciatis voluptate tempora voluptates labore quibusdam facere similique!</P> -->
-                    </td>
-                    <% if(totalGroup[0]){%>
-                        <td style="    width: 17%;
-                        position: fixed;
-                        bottom: 65%;
-                        overflow: overlay;">
-                            <div>
-                                <ul>
-                                    <h3>list of Groups</h3>
-                                    <% for(let i=0; i < totalGroup.length ; i++){ %>
-                                        <% if(totalGroup[i]._id.toString()==group?._id.toString() ){ %>
-                                            <option id="you" value="<%= totalGroup[i]._id %>">In : <%=
-                                                    totalGroup[i].GroupName%>
-                                            </option>
-                                            <% }else { %>
-                                                <li><a href="/messages/<%= totalGroup[i]._id %>">
-                                                        <%= totalGroup[i].GroupName%>
-                                                    </a></li>
-
-                                                <% } %>
+                                        <% for (let i=0; i < data.length ; i++){ %>
+                                            <% if(data[i]._id.toString()==user._id){ %>
+                                                <option id="you" value="<%=user._id %>" hidden></option>
+                                                <% }else { %>
+                                                    <div class="chat-item d-flex pl-3 pr-0 pt-3 pb-3">
+                                                        <a href="/messages/<%= data[i]._id %>">
+                                                            <div class="w-100">
+                                                                <div class="d-flex pl-0">
+                                                                    <img class="rounded-circle shadow avatar-sm mr-3"
+                                                                        src="https://user-images.githubusercontent.com/35243461/168796884-ee3aafb6-8083-48ec-9cfb-51b95eae08fe.jpg">
+                                                                    <div>
+                                                                        <p class="margin-auto fw-400 text-dark-75">
+                                                                            <%=data[i].name %>
+                                                                        </p>
+                                                                        <div class="d-flex flex-row mt-1">
+                                                                            <span>
+                                                                                <div class="svg15 double-check"></div>
+                                                                            </span>
+                                                                            <span
+                                                                                class="message-shortcut margin-auto text-muted fs-13 ml-1 mr-4">I'm
+                                                                                looking forward to it</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <div class="flex-shrink-0 margin-auto pl-2 pr-3">
+                                                            <div class="d-flex flex-column">
+                                                                <p class="text-muted text-right fs-13 mb-2"></p>
+                                                                <div class="text-right d-flex flex-row">
+                                                                    <span>
+                                                                        <div class="svg18 pinned"></div>
+                                                                    </span>
+                                                                    <i
+                                                                        class="text-muted la la-angle-down ml-1 fs-15"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <% } %>
-                                </ul>
+                                                        <% } %>
+
+                                                            <% if(totalGroup[0]) { %>
+                                                                <% for(let i=0; i < totalGroup.length ; i++){ %>
+                                                                    <% if(totalGroup[i]._id.toString()==group?._id.toString()
+                                                                        ){ %>
+                                                                        <option id="you"
+                                                                            value="<%= totalGroup[i]._id %>"></option>
+
+                                                                        <% }else { %>
+                                                                            <div
+                                                                                class="chat-item d-flex pl-3 pr-0 pt-3 pb-3">
+                                                                                <a
+                                                                                    href="/messages/<%= totalGroup[i]._id %>">
+                                                                                    <div class="w-100">
+                                                                                        <div class="d-flex pl-0">
+                                                                                            <img class="rounded-circle shadow avatar-sm mr-3"
+                                                                                                src="https://user-images.githubusercontent.com/35243461/168796884-ee3aafb6-8083-48ec-9cfb-51b95eae08fe.jpg">
+                                                                                            <div>
+                                                                                                <p
+                                                                                                    class="margin-auto fw-400 text-dark-75">
+                                                                                                    <%= totalGroup[i].name
+                                                                                                        %>
+                                                                                                </p>
+                                                                                                <div
+                                                                                                    class="d-flex flex-row mt-1">
+                                                                                                    <span>
+                                                                                                        <div
+                                                                                                            class="svg15 double-check">
+                                                                                                        </div>
+                                                                                                    </span>
+                                                                                                    <span
+                                                                                                        class="message-shortcut margin-auto text-muted fs-13 ml-1 mr-4">I'm
+                                                                                                        looking forward
+                                                                                                        to it</span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                                <div
+                                                                                    class="flex-shrink-0 margin-auto pl-2 pr-3">
+                                                                                    <div class="d-flex flex-column">
+                                                                                        <p
+                                                                                            class="text-muted text-right fs-13 mb-2">
+                                                                                            08:55</p>
+                                                                                        <div
+                                                                                            class="text-right d-flex flex-row">
+                                                                                            <span>
+                                                                                                <div
+                                                                                                    class="svg18 pinned">
+                                                                                                </div>
+                                                                                            </span>
+                                                                                            <i
+                                                                                                class="text-muted la la-angle-down ml-1 fs-15"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <% } %>
+                                                                                <% } %>
+                                                                                    <% } %>
+
+                                    </div>
+                                </div>
+
                             </div>
-                        </td>
+                        </div>
+                        <div class="col-md-8 col-12 card-stacked">
+                            <div class="card shadow-line mb-3 chat chat-panel">
+                                <div class="p-3 chat-header">
+                                    <% if(select){ %>
+                                        <div class="d-flex">
+                                            <div class="w-100 d-flex pl-0">
+                                                <img class="rounded-circle shadow avatar-sm mr-3 chat-profile-picture"
+                                                    src="https://user-images.githubusercontent.com/35243461/168796877-f6c8819a-5d6e-4b2a-bd56-04963639239b.jpg">
+                                                <div class="mr-3">
+                                                    <a href="!#">
+                                                        <p class="fw-400 mb-0 text-dark-75">
+                                                            <%=select.name %>
+                                                        </p>
+                                                    </a>
+                                                    <p class="sub-caption text-muted text-small mb-0"><i
+                                                            class="la la-clock mr-1"></i>last seen today at 09:15 PM</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex-shrink-0 margin-auto">
+                                                <a href="#" class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                    <svg viewBox="0 0 24 24" width="15" height="15"
+                                                        stroke="currentColor" stroke-width="2" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round" class="feather">
+                                                        <circle cx="12" cy="12" r="10"></circle>
+                                                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                                    </svg>
+                                                </a>
+                                                <a href="/tryTocall/<%=select._id %>/<%=user._id %>"
+                                                    class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                    <svg viewBox="0 0 24 24" width="15" height="15"
+                                                        stroke="currentColor" stroke-width="2" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round" class="feather">
+                                                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                                    </svg>
+                                                </a>
+                                                <% if(calling?.to==user._id && calling?.room ){ %>
+                                                    <a href="/videoCall/<%=calling.to %>/<%=calling.room %>"><button
+                                                            class=" btn-success">attendCall</button></a>
+                                                    <% } %>
+                                                        <option id="chatwith" value="<%=select._id %>" hidden></option>
 
-                        <% } %>
+                                                        <a href="#"
+                                                            class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                            <svg viewBox="0 0 24 24" width="15" height="15"
+                                                                stroke="currentColor" stroke-width="2" fill="none"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather">
+                                                                <circle cx="11" cy="11" r="8"></circle>
+                                                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                                            </svg>
+                                                        </a>
+                                                        <div id="hover" onmouseleave="hide()" class="outer" style="    display: inline-block;
+                                            position: relative;" hidden>
+                                                            <div class="inner" style="    position: absolute;
+                                              left: -69px;
+                                              z-index: 1;
+                                              top: 16px;
+                                              background-color: gray;
+                                              padding: 7px 26px 0px 0;
+                                              border-radius: 5px;
+                                              color: white;">
+                                                                <ul style="    list-style: none;">
+                                                                    <li><a href="/makeGroup"
+                                                                            style="color: white;">makeGroup</a></li>
+                                                                            <li><a href="/logout/<%=user._id %>" style="color: white;">logout</a></li>
 
-                </tr>
-                <div>
-                    <td style="width: 100%;
-                    padding-left: 28%;
-                    padding-top: 6%;scroll-behavior: auto; scroll-padding-inline-end: auto;">
-                        <div>
-                            <ul id="messages">
-                                <% if(chatting){%>
-                                    <% for(let i=0 ;i < chatting.length ; i++){ %>
-                                        <% if(chatting[i].from.toString()==user._id.toString()){ %>
-                                            <li>you :<%=chatting[i].message %>
-                                            </li><br><br>
-                                            <% if(chatting[i].image ){%>
-                                                <img id="img" src="<%=chatting[i].image %>"
-                                                    style="height: 100px;"><br><br>
-                                                <% }%>
-                                                    <% }else if(chatting[i].to.toString()==select._id.toString()){%>
-                                                        <% }else{ %>
-                                                            <span style="float: right;">
-                                                                <%=select.name %>:
-                                                            </span><br>
-                                                            <li style="float: right;">
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" onmouseover="hover()"
+                                                            class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                            <svg viewBox="0 0 24 24" width="15" height="15"
+                                                                stroke="currentColor" stroke-width="2" fill="none"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather">
+                                                                <circle cx="12" cy="12" r="1"></circle>
+                                                                <circle cx="12" cy="5" r="1"></circle>
+                                                                <circle cx="12" cy="19" r="1"></circle>
+                                                            </svg>
+                                                        </a>
+                                            </div>
+                                        </div>
+                                        <% }else{ %>
+                                            <div class="d-flex">
+                                                <div class="w-100 d-flex pl-0">
+                                                    <img class="rounded-circle shadow avatar-sm mr-3 chat-profile-picture"
+                                                        src="https://user-images.githubusercontent.com/35243461/168796877-f6c8819a-5d6e-4b2a-bd56-04963639239b.jpg">
+                                                    <div class="mr-3">
+                                                        <a href="!#">
+                                                            <p class="fw-400 mb-0 text-dark-75">
+                                                                <%=group.name %>
+                                                            </p>
+                                                        </a>
+                                                        <p class="sub-caption text-muted text-small mb-0"><i
+                                                                class="la la-clock mr-1"></i>last seen today at 09:15 PM
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-shrink-0 margin-auto">
+                                                    <a href="#"
+                                                        class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                        <svg viewBox="0 0 24 24" width="15" height="15"
+                                                            stroke="currentColor" stroke-width="2" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather">
+                                                            <circle cx="12" cy="12" r="10"></circle>
+                                                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                                                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                                        </svg>
+                                                    </a>
+                                                    <a href="/tryToGroupcall/<%=group._id %>/<%=user._id%>"
+                                                        class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                        <svg viewBox="0 0 24 24" width="15" height="15"
+                                                            stroke="currentColor" stroke-width="2" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather">
+                                                            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2">
+                                                            </rect>
+                                                        </svg>
+                                                    </a>
+                                                    <% if(GroupCall?.to==group._id.toString() && GroupCall?.room ){ %>
+                                                        <a href="/videoCall/<%=GroupCall.to %>/<%=GroupCall.room %>"><button
+                                                                class=" btn-success">attendCall</button></a>
+                                                        <% } %>
+                                                            <option id="chatwith" value="<%=group._id %>" hidden>
+                                                            </option>
+
+                                                            <a href="#"
+                                                                class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                                <svg viewBox="0 0 24 24" width="15" height="15"
+                                                                    stroke="currentColor" stroke-width="2" fill="none"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather">
+                                                                    <circle cx="11" cy="11" r="8"></circle>
+                                                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                                                </svg>
+                                                            </a>
+                                                            <div id="hover" onmouseleave="hide()" class="outer" style="    display: inline-block;
+                                                position: relative;" hidden>
+                                                                <div class="inner" style="    position: absolute;
+                                                  left: -69px;
+                                                  z-index: 1;
+                                                  top: 16px;
+                                                  background-color: gray;
+                                                  padding: 7px 26px 0px 0;
+                                                  border-radius: 5px;
+                                                  color: white;">
+                                                                    <ul style="    list-style: none;">
+                                                                        <li><a href="/makeGroup"
+                                                                                style="color: white;">makeGroup</a></li>
+
+
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#" onmouseover="hover()"
+                                                                class="btn btn-sm btn-icon btn-light active text-dark ml-2">
+                                                                <svg viewBox="0 0 24 24" width="15" height="15"
+                                                                    stroke="currentColor" stroke-width="2" fill="none"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather">
+                                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                                    <circle cx="12" cy="5" r="1"></circle>
+                                                                    <circle cx="12" cy="19" r="1"></circle>
+                                                                </svg>
+                                                            </a>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                </div>
+                                <div
+                                    class="d-flex flex-row mb-3 navigation-mobile scrollable-chat-panel chat-panel-scroll">
+                                    <div id="messages" class="w-100 p-3" style=" overflow: auto;">
+                                        <% if(chatting){%>
+                                            <div
+                                                class="text-center letter-space drop-shadow text-uppercase fs-12 w-100 mb-3">
+                                                Today</div>
+                                            <% for(let i=0 ;i < chatting.length ; i++){ %>
+                                                <% if(chatting[i].from.toString()==user._id.toString()){ %>
+                                                    <% if(chatting[i].message ){%>
+                                                        <div class="left-chat-message fs-13 mb-2">
+                                                            <p class="mb-0 mr-3 pr-4">
                                                                 <%=chatting[i].message %>
-                                                            </li><br><br>
-                                                            <img id="img" src="<%=chatting[i].image %>"
-                                                                style="height: 100px;    position: relative;left: 72%;"><br><br>
-                                                            <% } %>
-                                                                <% } %>
-                                                                    <% } %>
+                                                            </p>
+                                                            <div class="message-options">
+                                                                <div class="message-time">
+                                                                    <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
+                                                                         <div class=" message-arrow"><i
+                                                                            class="text-muted la la-angle-down fs-17"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                  
+                                                        <% } %>
+                                                    <% if(chatting[i].image ){%>
+                                                        <div class="left-chat-message fs-13 mb-2">
+                                                            <img id="img"  src="/uploads<%=chatting[i].image %>"
+                                                                style="height: 100px;"><br><br>
+                                                            <div class="message-options">
+                                                                <div class="message-time">
+                                                                    <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
+                                                        <div class=" message-arrow"><i
+                                                                            class="text-muted la la-angle-down fs-17"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                                        <% if(groupmsg) { %>
-                                                                            <% for(let i=0 ;i < groupmsg.length ; i++){
-                                                                                %>
+                                                        <% }%>
+                                                            <% }else
+                                                                if(chatting[i].to.toString()==select._id.toString()){%>
+                                                                <% }else{ %> %>
+                                                                    <% if(chatting[i].message ){%>
+                                                                        <div class="d-flex flex-row-reverse mb-2">
+                                                                            <div class="right-chat-message fs-13 mb-2">
+                                                                                <div class="mb-0 mr-3 pr-4">
+                                                                                    <div class="d-flex flex-row">
+                                                                                        <div class="pr-2">
+                                                                                            <%=chatting[i].message %>
+                                                                                        </div>
+                                                                                        <div class="pr-4"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="message-options dark">
+                                                                                    <div class="message-time">
+                                                                                        <div class="d-flex flex-row">
+                                                                                            <div class="mr-2">
+                                                                                                <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
+                                                                            <div class=" svg15 double-check">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="message-arrow"><i
+                                                                                            class="text-muted la la-angle-down fs-17"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <% } %>
+                                                                    <% if(chatting[i].image ){%>
+                                                                        <div class="d-flex flex-row-reverse mb-2">
+                                                                            <div class="right-chat-message fs-13 mb-2">
+                                                                                <div class="mb-0 mr-3 pr-4">
+                                                                                    <div class="d-flex flex-row">
+                                                                                        <div class="pr-2"><img id="img" style=" width: 300px;"
+                                                                                                src="/uploads<%=chatting[i].image %>"><br><br>
+                                                                                        </div>
+                                                                                        <div class="pr-4"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="message-options dark">
+                                                                                    <div class="message-time">
+                                                                                        <div class="d-flex flex-row">
+                                                                                            <div class="mr-2">
+                                                                                                <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
+                                                                            <div class=" svg15 double-check">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="message-arrow"><i
+                                                                                            class="text-muted la la-angle-down fs-17"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <% }%>
+                                                                            <% } %>
+                                                                                <% } %>
+                                                                                    <% } %>
 
-                                                                                <% if(groupmsg[i].from.toString()==user._id.toString()){
-                                                                                    %>
+                                                                                        <% if(groupmsg) { %>
+                                                                                            <% for(let i=0 ;i < groupmsg.length ; i++){ %>
+                                                                                                
 
-                                                                                    <li>you :<%=groupmsg[i].message %>
-                                                                                    </li><br><br>
-                                                                                    <% if(groupmsg[i].image ){%>
-                                                                                        <img id="img"
-                                                                                            src="<%=groupmsg[i].image %>"
-                                                                                            style="height: 100px;"><br><br>
-                                                                                        <% }%>
-                                                                                            <% }else { %>
-                                                                                                <%
-                                                                                                    groupname.filter(obj=>
-                                                                                                    { %>
-                                                                                                    <% if(obj._id.toString()==groupmsg[i].from.toString()
-                                                                                                        ) { %>
-
-                                                                                                        <span
-                                                                                                            style="float: right;">
-                                                                                                            <%=obj.name
-                                                                                                                %>:
-                                                                                                        </span><br>
-                                                                                                        <li
-                                                                                                            style="float: right;">
-                                                                                                            <%=groupmsg[i].message
-                                                                                                                %>
-                                                                                                        </li><br><br>
-                                                                                                        <img id="img"
-                                                                                                            src="<%=groupmsg[i].image %>"
-                                                                                                            style="height: 100px;    position: relative;left: 85%;"><br><br>
-
+                                                                                                <% if(groupmsg[i].from.toString()==user._id.toString()){ %>
+                                                                                                    <% if(groupmsg[i].message){%>
+                                                                                                        <div
+                                                                                                            class="left-chat-message fs-13 mb-2">
+                                                                                                            <p
+                                                                                                                class="mb-0 mr-3 pr-4">
+                                                                                                                <%=groupmsg[i].message
+                                                                                                                    %>
+                                                                                                            </p>
+                                                                                                            <div
+                                                                                                                class="message-options">
+                                                                                                                <div
+                                                                                                                    class="message-time">
+                                                                                                                    <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
+                                                                                                                </div>
+                                                                                                                <div
+                                                                                                                    class="message-arrow">
+                                                                                                                    <i
+                                                                                                                        class="text-muted la la-angle-down fs-17"></i>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
                                                                                                         <% } %>
-                                                                                                            <% }) %>
 
+                                                                                                    <% if(groupmsg[i].image){%>
+                                                                                                        
+                                                                                                        <div
+                                                                                                            class="left-chat-message fs-13 mb-2">
+                                                                                                            <img id="img"
+                                                                                                                src="/uploads<%=groupmsg[i].image %>"
+                                                                                                                style="height: 100px;"><br><br>
+                                                                                                            <div
+                                                                                                                class="message-options">
+                                                                                                                <div
+                                                                                                                    class="message-time">
+                                                                                                                    <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
+                                                                                                                </div>
+                                                                                                                <div
+                                                                                                                    class="message-arrow">
+                                                                                                                    <i
+                                                                                                                        class="text-muted la la-angle-down fs-17"></i>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
 
+                                                                                                        <% }%>
 
-                                                                                                                <% } %>
-                                                                                                                    <% }
+                                                                                                            <% }else{ %>
+                                                                                                                <%
+                                                                                                                    groupname.filter(obj=>
+                                                                                                                    { %>
+
+                                                                                                                    <% if(obj._id.toString()==groupmsg[i].from.toString()
+                                                                                                                        )
+                                                                                                                        {
                                                                                                                         %>
-                                                                                                                        <% }
-                                                                                                                            %>
-                            </ul>
+                                                                                                                      <% if(groupmsg[i].message) { %>                
+                                                                                                                        <div
+                                                                                                                            class="d-flex flex-row-reverse mb-2">
+
+                                                                                                                            <div class="right-chat-message fs-13 mb-2">
+                                                                                                                                <span>
+                                                                                                                                    <%=obj.name  %>
+                                                                                                                                </span>
+                                                                                                                                <div
+                                                                                                                                    class="mb-0 mr-3 pr-4">
+                                                                                                                                    <div
+                                                                                                                                        class="d-flex flex-row">
+                                                                                                                                        <div
+                                                                                                                                            class="pr-2">
+                                                                                                                                            <%=groupmsg[i].message
+                                                                                                                                                %>
+                                                                                                                                        </div>
+                                                                                                                                        <div
+                                                                                                                                            class="pr-4">
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                                <div
+                                                                                                                                    class="message-options dark">
+                                                                                                                                    <div
+                                                                                                                                        class="message-time">
+                                                                                                                                        <div
+                                                                                                                                            class="d-flex flex-row">
+                                                                                                                                            <div
+                                                                                                                                                class="mr-2">
+                                                                                                                                                <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
+                                                                                                                                            </div>
+                                                                                                                                            <div
+                                                                                                                                                class="svg15 double-check">
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div
+                                                                                                                                        class="message-arrow">
+                                                                                                                                        <i
+                                                                                                                                            class="text-muted la la-angle-down fs-17"></i>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div> <% } %>
+
+                                                                                                                        <%
+                                                                                                                            if(groupmsg[i].image){%>
+                                                                                                                            
+                                                                                                                            <div class="d-flex flex-row-reverse mb-2">
+                                                                                                                                
+                                                                                                                                <div class="right-chat-message fs-13 mb-2">
+                                                                                                                                    <span>
+                                                                                                                                <%=obj.name
+                                                                                                                                    %>
+                                                                                                                            </span>
+                                                                                                                                    <div
+                                                                                                                                        class="mb-0 mr-3 pr-4">
+                                                                                                                                        <div
+                                                                                                                                            class="d-flex flex-row">
+                                                                                                                                            <div
+                                                                                                                                                class="pr-2">
+                                                                                                                                                <img id="img" style=" width: 300px; "
+                                                                                                                                                    src="/uploads<%=groupmsg[i].image %>">
+                                                                                                                                            </div>
+                                                                                                                                            <div
+                                                                                                                                                class="pr-4">
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div
+                                                                                                                                        class="message-options dark">
+                                                                                                                                        <div
+                                                                                                                                            class="message-time">
+                                                                                                                                            <div
+                                                                                                                                                class="d-flex flex-row">
+                                                                                                                                                <div
+                                                                                                                                                    class="mr-2">
+                                                                                                                                                    <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
+                                                                                                                                                </div>
+                                                                                                                                                <div
+                                                                                                                                                    class="svg15 double-check">
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <div
+                                                                                                                                            class="message-arrow">
+                                                                                                                                            <i
+                                                                                                                                                class="text-muted la la-angle-down fs-17"></i>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <% }
+                                                                                                                                %>
+                                                                                                                                <% }
+                                                                                                                                    %>
+                                                                                                                                    <% })
+                                                                                                                                        %>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                                                                                            <% }
+                                                                                                                                                %>
+                                                                                                                                                <% }
+                                                                                                                                                    %>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="input-group">
+                                    <form id="form" action="#" enctype="multipart/form-data" style="width: 100%;">
+                                        <input id="input" autocomplete="off"
+                                            style="    width: 74%; margin-left: 37%;" />
+                                        <input id="file" name="image" type="file" style="width: 20%;" />
+                                        <img id=”preview” width=”100″></img>
+                                        <% if(select){ %>
+                                            <button onclick=userfun('<%=select.id %>','<%= user._id %>') > Send</button>
+                                            <% }else{ %>
+                                                <button onclick=groupfun('<%=group._id %>','<%= user._id %>') >
+                                                        Send</button>
+                                                <% } %>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <form id="form" action="#" enctype="multipart/form-data" style="width: 100%;">
-                                <input id="input" autocomplete="off" style="    width: 74%; margin-left: 30%;" />
-                                <input id="file" name="image" type="file" style="width: 20%;" />
-                                <img id=”preview” width=”100″></img>
-                                <% if(select){ %>
-                                    <button onclick=userfun('<%=select.id %>','<%= user._id %>') > Send</button>
-                                    <% }else{ %>
-                                        <button onclick=groupfun('<%=group._id %>','<%= user._id %>') > Send</button>
-                                        <% } %>
-                            </form>
-                        </div>
-                    </td>
+                    </div>
                 </div>
-            </table>
+            </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script>
 
+   
+     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+        function hover() {
+            const click = document.getElementById("hover")
+            console.log(click, "click ");
+            click.hidden = false;
+        }
+        function hide() {
+            const click = document.getElementById("hover")
+            console.log(click, "click ");
+            click.hidden = true;
+        }
+    </script>
+    <script>
         var socket = io();
+
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
         var input = document.getElementById('input');
         var image = document.getElementById("file")
         var you = document.getElementById("you")
         var chatwith = document.getElementById("chatwith")
-       
+        console.log(you.value, "you");
+        console.log(chatwith.value, "chatwith");
+        socket.emit("socket join", chatwith.value, you.value)
+
         // image send 
         window.onload = function () {
             document.getElementById("file").addEventListener("change", function () {
@@ -261,17 +802,61 @@
             var reader = new FileReader();
             reader.onload = function (e) {
                 // client send
-                console.log(e.target.result, "e target result");
+                
                 socket.emit('sendImage', [{ base64: e.target.result }, chatwith.value, you.value]);
             }
             reader.readAsDataURL(selector.files[0]);
         }
         // Client image receive
-        socket.on('receiveImage', function (base64image) {
+        socket.on('receiveImage', function (base64image, id, id2) {
             var imgvalue = base64image;
-            var img = `<a target="_blank" href="${base64image.path} "><img id="img" src="${base64image.path}" style="height: 100px;" /></a> <br><br>`;
-
-            $("#messages").append(img);
+            console.log(id2,"id2");
+            console.log(you.value,"youvalue");
+            const date = new Date()
+            var img = `<a target="_blank" href="/uploads${base64image.path} "><img id="img" src="/uploads${base64image.path}" style="height: 100px;" /></a> <br><br>`;
+            if (you.value == id2) {
+                const image = ` <div class="left-chat-message fs-13 mb-2">
+                                                                <img id="img" src="/uploads${base64image.path}"
+                                                                    style="height: 100px;"><br><br>
+                                                                <div class="message-options">
+                                                                    <div class="message-time">
+                                                                        ${date.toLocaleTimeString().split(" ")[0].slice(0, 5)}</div>
+                                                            <div class=" message-arrow"><i
+                                                                                class="text-muted la la-angle-down fs-17"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>`
+                $("#messages").append(image);
+                window.scrollTo(100, document.body.scrollHeight);
+            } else {
+                const item = ` <div class="d-flex flex-row-reverse mb-2">
+                                                                            <div class="right-chat-message fs-13 mb-2">
+                                                                                <div class="mb-0 mr-3 pr-4">
+                                                                                    <div class="d-flex flex-row">
+                                                                                        <div class="pr-2"><img id="img" style=" width: 300px;"
+                                                                                                src="/uploads${base64image.path}"><br><br>
+                                                                                        </div>
+                                                                                        <div class="pr-4"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="message-options dark">
+                                                                                    <div class="message-time">
+                                                                                        <div class="d-flex flex-row">
+                                                                                            <div class="mr-2">
+                                                                                                ${date.toLocaleTimeString().split(" ")[0].slice(0, 5)}</div>
+                                                                            <div class=" svg15 double-check">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="message-arrow"><i
+                                                                                            class="text-muted la la-angle-down fs-17"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>`;
+                                                                        $("#messages").append(item);
+                window.scrollTo(100, document.body.scrollHeight);
+            }
         });
 
         // messages send 
@@ -280,18 +865,54 @@
                 e.preventDefault();
                 if (input.value) {
                     socket.emit('chat message', [input.value, id, id2]);
-                    input.value = '';
-                }
+                    input.value = "" 
+                 }
             });
         }
         // receve chat message  from server
-        socket.on('chat message', function (msg) {
-            var item = document.createElement('li');
-            item.textContent = msg;
-
-            messages.appendChild(item);
+        socket.on('chat message', function (msg, id, id2) {
+            const date = new Date()
+           
+            if (you.value == id2.toString()) {
+                var item = `<div class="left-chat-message fs-13 mb-2">
+                                                <p class="mb-0 mr-3 pr-4">${msg}</p>
+                                                <div class="message-options">
+                                                    <div class="message-time">${date.toLocaleTimeString().split(" ")[0].slice(0, 5)}</div>
+                                                    <div class="message-arrow"><i
+                                                            class="text-muted la la-angle-down fs-17"></i></div>
+                                                </div>
+                                            </div>`
+    
+                console.log(item, "item");
+                $('#messages').append(item);
+                window.scrollTo(100, document.body.scrollHeight);
+            } else {
+                var item = `<div class="d-flex flex-row-reverse mb-2">
+                                                        <div class="right-chat-message fs-13 mb-2">
+                                                            <div class="mb-0 mr-3 pr-4">
+                                                                <div class="d-flex flex-row">
+                                                                    <div class="pr-2">${msg}</div>
+                                                                    <div class="pr-4"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="message-options dark">
+                                                                <div class="message-time">
+                                                                    <div class="d-flex flex-row">
+                                                                        <div class="mr-2">${date.toLocaleTimeString().split(" ")[0].slice(0, 5)}</div>
+                                                                        <div class="svg15 double-check"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="message-arrow"><i class="text-muted la la-angle-down fs-17"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>`
+    
+                $('#messages').append(item);
             window.scrollTo(100, document.body.scrollHeight);
+        }
+
         });
+
         // group message send receve
         function groupfun(groupid, id2) {
             form.addEventListener('submit', function (e) {
@@ -303,13 +924,46 @@
             });
         }
 
-        socket.on('group chat message', function (msg) {
-            var item = document.createElement('li');
-            item.textContent = msg;
-            messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
+        socket.on('group chat message', function (msg,id,id2) {
+            const date = new Date()
+            if (you.value == id2.toString()) {
+                var item = `<div class="left-chat-message fs-13 mb-2">
+                                                <p class="mb-0 mr-3 pr-4">${msg}</p>
+                                                <div class="message-options">
+                                                    <div class="message-time">${date.toLocaleTimeString().split(" ")[0].slice(0, 5)}</div>
+                                                    <div class="message-arrow"><i
+                                                            class="text-muted la la-angle-down fs-17"></i></div>
+                                                </div>
+                                            </div>`
+    
+                console.log(item, "item");
+                $('#messages').append(item);
+                window.scrollTo(100, document.body.scrollHeight);
+            } else {
+                var item = `<div class="d-flex flex-row-reverse mb-2">
+                                                        <div class="right-chat-message fs-13 mb-2">
+                                                            <div class="mb-0 mr-3 pr-4">
+                                                                <div class="d-flex flex-row">
+                                                                    <div class="pr-2">${msg}</div>
+                                                                    <div class="pr-4"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="message-options dark">
+                                                                <div class="message-time">
+                                                                    <div class="d-flex flex-row">
+                                                                        <div class="mr-2">${date.toLocaleTimeString().split(" ")[0].slice(0, 5)}</div>
+                                                                        <div class="svg15 double-check"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="message-arrow"><i class="text-muted la la-angle-down fs-17"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>`
+    
+                $('#messages').append(item);
+            window.scrollTo(100, document.body.scrollHeight);
+        }
         });
-
 
 
     </script>
