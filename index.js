@@ -90,7 +90,7 @@ app.use(router),
                 switch (guess) {
                     case "png": ext = ".png"; break;
                     case "jpeg": ext = ".jpg"; break;
-                    default: ext = ".bin"; break;
+                    default: ext = ".bin"; break; 
                 }
                 const id = `${data[2]}-${data[1]}`
 

@@ -14,24 +14,24 @@ const isAuth = async (req, res, next) => {
     next()
   } else {
     req.session.groupParamsId = req.params
-  
+
     res.redirect("/")
   }
 }
 
 const login = (req, res) => {
- if (req.session.username) {
-  res.redirect("/index")
- } else {
-   res.render("login")
- }
+  if (req.session.username) {
+    res.redirect("/index")
+  } else {
+    res.render("login")
+  }
 }
 
-const logout = async(req,res) => {
+const logout = async (req, res) => {
   req.session.destroy();
-  console.log(req.params.id ,"logout id");
-  const status = await registerModel.updateOne({_id : req.params.id },{
-    status : "offline"
+  console.log(req.params.id, "logout id");
+  const status = await registerModel.updateOne({ _id: req.params.id }, {
+    status: "offline"
   })
   res.redirect("/")
 }
@@ -39,9 +39,9 @@ const logout = async(req,res) => {
 const register = (req, res) => {
   if (req.session.username) {
     res.redirect("/index")
-   } else {
+  } else {
     res.render("register")
-  
+
   }
 }
 
@@ -92,10 +92,10 @@ const postLogin = async (req, res) => {
             })
           }
         }
-       const status = await registerModel.updateOne({email},{
-        status : "online"
-       })
-       console.log(status ,"status");
+        const status = await registerModel.updateOne({ email }, {
+          status: "online"
+        })
+        console.log(status, "status");
         res.redirect("/index")
       }
     }
@@ -140,18 +140,18 @@ const socketIndex = async (req, res) => {
                   '$eq': [
                     mongoose.Types.ObjectId(user._id), '$newField.from'
                   ]
-                }, 
-                'then': '$newField.to', 
+                },
+                'then': '$newField.to',
                 'else': '$newField.from'
               }
             }
           }
         }, {
           '$lookup': {
-            'from': 'socketregisters', 
+            'from': 'socketregisters',
             'let': {
               'userId': '$dataId'
-            }, 
+            },
             'pipeline': [
               {
                 '$match': {
@@ -162,12 +162,12 @@ const socketIndex = async (req, res) => {
                   }
                 }
               }
-            ], 
+            ],
             'as': 'result'
           }
         }, {
           '$unwind': {
-            'path': '$result', 
+            'path': '$result',
             'preserveNullAndEmptyArrays': true
           }
         }, {
@@ -178,20 +178,20 @@ const socketIndex = async (req, res) => {
                   '$eq': [
                     '$chatType', 'individual'
                   ]
-                }, 
+                },
                 'then': {
-                  '_id': '$result._id', 
-                  'name': '$result.name', 
-                  'message': '$newField.message', 
-                  'image': '$newField.image', 
-                  'date': '$newField.date', 
+                  '_id': '$result._id',
+                  'name': '$result.name',
+                  'message': '$newField.message',
+                  'image': '$newField.image',
+                  'date': '$newField.date',
                   'status': '$result.status'
-                }, 
+                },
                 'else': {
-                  '_id': '$_id', 
-                  'name': '$name', 
-                  'message': '$newField.message', 
-                  'image': '$newField.image', 
+                  '_id': '$_id',
+                  'name': '$name',
+                  'message': '$newField.message',
+                  'image': '$newField.image',
                   'date': '$newField.date'
                 }
               }
@@ -205,7 +205,7 @@ const socketIndex = async (req, res) => {
       ]
       const data = await chatModel.aggregate(aggregate)
       const group = await chatModel.find({ chatType: "together", chatId: { $in: mongoose.Types.ObjectId(user._id) } });
-      
+
       const calling = await videoModel.findOne({ videoChatId: { $in: `${user._id}-${req.params.id}` } })
       res.render("chat", { data, user, group, calling })
     } else {
@@ -223,7 +223,7 @@ const messages = async (req, res) => {
     const select = await registerModel.findOne({ _id: req.params.id })
     const group = await chatModel.findOne({ _id: req.params.id })
     const totalGroup = await chatModel.find({ chatType: "together", chatId: { $in: mongoose.Types.ObjectId(user._id) } });
-    const groupmsg = group?.chat 
+    const groupmsg = group?.chat
     const agreegateId = await chatModel.aggregate([
       {
         '$match': {
@@ -399,11 +399,18 @@ const callRemove = async (req, res) => {
 
 }
 
-const searchBar = async (req,res) => {
-  const data = await registerModel.aggregate()
+const searchBar = async (req, res) => {
+  const data = await registerModel.aggregate([
+    {
+      '$match': {
+        'name': new RegExp(req.query.search)
+      }
+    }
+  ])
+res.send(data)
 }
 
 module.exports = {
-  login,logout,register, registerPost, postLogin, socketIndex, messages, makeGroup,
-  makeCall, makeGroupCall, makeCallRoom, groupId, callRemove,searchBar ,isAuth
+  login, logout, register, registerPost, postLogin, socketIndex, messages, makeGroup,
+  makeCall, makeGroupCall, makeCallRoom, groupId, callRemove, searchBar, isAuth
 }; 

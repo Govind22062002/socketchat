@@ -743,9 +743,9 @@
                                         <input id="file" name="image" type="file" style="width: 20%;" />
                                         <img id=”preview” width=”100″></img>
                                         <% if(select){ %>
-                                            <button onclick=userfun('<%=select.id %>','<%= user._id %>') > Send</button>
+                                            <button onclick="userfun('<%=select.id %>','<%= user._id %>')" > Send</button>
                                             <% }else{ %>
-                                                <button onclick=groupfun('<%=group._id %>','<%= user._id %>') >
+                                                <button onclick="groupfun('<%=group._id %>','<%= user._id %>')" >
                                                         Send</button>
                                                 <% } %>
                                     </form>
