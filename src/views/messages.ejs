@@ -233,7 +233,6 @@
                                                                         ){ %>
                                                                         <option id="you"
                                                                             value="<%= totalGroup[i]._id %>"></option>
-
                                                                         <% }else { %>
                                                                             <div
                                                                                 class="chat-item d-flex pl-3 pr-0 pt-3 pb-3">
@@ -359,7 +358,8 @@
                                                                 <ul style="    list-style: none;">
                                                                     <li><a href="/makeGroup"
                                                                             style="color: white;">makeGroup</a></li>
-                                                                            <li><a href="/logout/<%=user._id %>" style="color: white;">logout</a></li>
+                                                                    <li><a href="/logout/<%=user._id %>"
+                                                                            style="color: white;">logout</a></li>
 
 
                                                                 </ul>
@@ -489,248 +489,289 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                  
+
                                                         <% } %>
-                                                    <% if(chatting[i].image ){%>
-                                                        <div class="left-chat-message fs-13 mb-2">
-                                                            <img id="img"  src="/uploads<%=chatting[i].image %>"
-                                                                style="height: 100px;"><br><br>
-                                                            <div class="message-options">
-                                                                <div class="message-time">
-                                                                    <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
+                                                            <% if(chatting[i].image ){%>
+                                                                <div class="left-chat-message fs-13 mb-2">
+                                                                    <img id="img" src="/uploads<%=chatting[i].image %>"
+                                                                        style="height: 100px;"><br><br>
+                                                                    <div class="message-options">
+                                                                        <div class="message-time">
+                                                                            <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
                                                         <div class=" message-arrow"><i
-                                                                            class="text-muted la la-angle-down fs-17"></i>
+                                                                                    class="text-muted la la-angle-down fs-17"></i>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
 
-                                                        <% }%>
-                                                            <% }else
-                                                                if(chatting[i].to.toString()==select._id.toString()){%>
-                                                                <% }else{ %> %>
-                                                                    <% if(chatting[i].message ){%>
-                                                                        <div class="d-flex flex-row-reverse mb-2">
-                                                                            <div class="right-chat-message fs-13 mb-2">
-                                                                                <div class="mb-0 mr-3 pr-4">
-                                                                                    <div class="d-flex flex-row">
-                                                                                        <div class="pr-2">
-                                                                                            <%=chatting[i].message %>
+                                                                <% }%>
+                                                                    <% }else
+                                                                        if(chatting[i].to.toString()==select._id.toString()){%>
+                                                                        <% }else{ %> %>
+                                                                            <% if(chatting[i].message ){%>
+                                                                                <div
+                                                                                    class="d-flex flex-row-reverse mb-2">
+                                                                                    <div
+                                                                                        class="right-chat-message fs-13 mb-2">
+                                                                                        <div class="mb-0 mr-3 pr-4">
+                                                                                            <div
+                                                                                                class="d-flex flex-row">
+                                                                                                <div class="pr-2">
+                                                                                                    <%=chatting[i].message
+                                                                                                        %>
+                                                                                                </div>
+                                                                                                <div class="pr-4"></div>
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div class="pr-4"></div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="message-options dark">
-                                                                                    <div class="message-time">
-                                                                                        <div class="d-flex flex-row">
-                                                                                            <div class="mr-2">
-                                                                                                <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
+                                                                                        <div
+                                                                                            class="message-options dark">
+                                                                                            <div class="message-time">
+                                                                                                <div
+                                                                                                    class="d-flex flex-row">
+                                                                                                    <div class="mr-2">
+                                                                                                        <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
                                                                             <div class=" svg15 double-check">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="message-arrow">
+                                                                                                <i
+                                                                                                    class="text-muted la la-angle-down fs-17"></i>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="message-arrow"><i
-                                                                                            class="text-muted la la-angle-down fs-17"></i>
-                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <% } %>
-                                                                    <% if(chatting[i].image ){%>
-                                                                        <div class="d-flex flex-row-reverse mb-2">
-                                                                            <div class="right-chat-message fs-13 mb-2">
-                                                                                <div class="mb-0 mr-3 pr-4">
-                                                                                    <div class="d-flex flex-row">
-                                                                                        <div class="pr-2"><img id="img" style=" width: 300px;"
-                                                                                                src="/uploads<%=chatting[i].image %>"><br><br>
-                                                                                        </div>
-                                                                                        <div class="pr-4"></div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="message-options dark">
-                                                                                    <div class="message-time">
-                                                                                        <div class="d-flex flex-row">
-                                                                                            <div class="mr-2">
-                                                                                                <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
-                                                                            <div class=" svg15 double-check">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="message-arrow"><i
-                                                                                            class="text-muted la la-angle-down fs-17"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <% }%>
-                                                                            <% } %>
                                                                                 <% } %>
-                                                                                    <% } %>
-
-                                                                                        <% if(groupmsg) { %>
-                                                                                            <% for(let i=0 ;i < groupmsg.length ; i++){ %>
-                                                                                                
-
-                                                                                                <% if(groupmsg[i].from.toString()==user._id.toString()){ %>
-                                                                                                    <% if(groupmsg[i].message){%>
+                                                                                    <% if(chatting[i].image ){%>
+                                                                                        <div
+                                                                                            class="d-flex flex-row-reverse mb-2">
+                                                                                            <div
+                                                                                                class="right-chat-message fs-13 mb-2">
+                                                                                                <div
+                                                                                                    class="mb-0 mr-3 pr-4">
+                                                                                                    <div
+                                                                                                        class="d-flex flex-row">
                                                                                                         <div
-                                                                                                            class="left-chat-message fs-13 mb-2">
-                                                                                                            <p
-                                                                                                                class="mb-0 mr-3 pr-4">
-                                                                                                                <%=groupmsg[i].message
-                                                                                                                    %>
-                                                                                                            </p>
-                                                                                                            <div
-                                                                                                                class="message-options">
-                                                                                                                <div
-                                                                                                                    class="message-time">
-                                                                                                                    <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
-                                                                                                                </div>
-                                                                                                                <div
-                                                                                                                    class="message-arrow">
-                                                                                                                    <i
-                                                                                                                        class="text-muted la la-angle-down fs-17"></i>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <% } %>
-
-                                                                                                    <% if(groupmsg[i].image){%>
-                                                                                                        
-                                                                                                        <div
-                                                                                                            class="left-chat-message fs-13 mb-2">
+                                                                                                            class="pr-2">
                                                                                                             <img id="img"
-                                                                                                                src="/uploads<%=groupmsg[i].image %>"
-                                                                                                                style="height: 100px;"><br><br>
+                                                                                                                style=" width: 300px;"
+                                                                                                                src="/uploads<%=chatting[i].image %>"><br><br>
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                            class="pr-4">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="message-options dark">
+                                                                                                    <div
+                                                                                                        class="message-time">
+                                                                                                        <div
+                                                                                                            class="d-flex flex-row">
                                                                                                             <div
-                                                                                                                class="message-options">
-                                                                                                                <div
-                                                                                                                    class="message-time">
-                                                                                                                    <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
-                                                                                                                </div>
-                                                                                                                <div
-                                                                                                                    class="message-arrow">
-                                                                                                                    <i
-                                                                                                                        class="text-muted la la-angle-down fs-17"></i>
-                                                                                                                </div>
+                                                                                                                class="mr-2">
+                                                                                                                <%=chatting[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %></div>
+                                                                            <div class=" svg15 double-check">
                                                                                                             </div>
                                                                                                         </div>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="message-arrow">
+                                                                                                        <i
+                                                                                                            class="text-muted la la-angle-down fs-17"></i>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <% }%>
+                                                                                            <% } %>
+                                                                                                <% } %>
+                                                                                                    <% } %>
 
-                                                                                                        <% }%>
-
-                                                                                                            <% }else{ %>
-                                                                                                                <%
-                                                                                                                    groupname.filter(obj=>
-                                                                                                                    { %>
-
-                                                                                                                    <% if(obj._id.toString()==groupmsg[i].from.toString()
-                                                                                                                        )
-                                                                                                                        {
-                                                                                                                        %>
-                                                                                                                      <% if(groupmsg[i].message) { %>                
+                                                                                                        <% if(groupmsg)
+                                                                                                            { %>
+                                                                                                            <% for(let
+                                                                                                                i=0 ;i <
+                                                                                                                groupmsg.length
+                                                                                                                ; i++){
+                                                                                                                %>
+                                                                                                                <% if(groupmsg[i].from.toString()==user._id.toString()){
+                                                                                                                    %>
+                                                                                                                    <%
+                                                                                                                        if(groupmsg[i].message){%>
                                                                                                                         <div
-                                                                                                                            class="d-flex flex-row-reverse mb-2">
-
-                                                                                                                            <div class="right-chat-message fs-13 mb-2">
-                                                                                                                                <span>
-                                                                                                                                    <%=obj.name  %>
-                                                                                                                                </span>
+                                                                                                                            class="left-chat-message fs-13 mb-2">
+                                                                                                                            <p
+                                                                                                                                class="mb-0 mr-3 pr-4">
+                                                                                                                                <%=groupmsg[i].message
+                                                                                                                                    %>
+                                                                                                                            </p>
+                                                                                                                            <div
+                                                                                                                                class="message-options">
                                                                                                                                 <div
-                                                                                                                                    class="mb-0 mr-3 pr-4">
-                                                                                                                                    <div
-                                                                                                                                        class="d-flex flex-row">
-                                                                                                                                        <div
-                                                                                                                                            class="pr-2">
-                                                                                                                                            <%=groupmsg[i].message
-                                                                                                                                                %>
-                                                                                                                                        </div>
-                                                                                                                                        <div
-                                                                                                                                            class="pr-4">
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                </div>
-                                                                                                                                <div
-                                                                                                                                    class="message-options dark">
-                                                                                                                                    <div
-                                                                                                                                        class="message-time">
-                                                                                                                                        <div
-                                                                                                                                            class="d-flex flex-row">
-                                                                                                                                            <div
-                                                                                                                                                class="mr-2">
-                                                                                                                                                <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
-                                                                                                                                            </div>
-                                                                                                                                            <div
-                                                                                                                                                class="svg15 double-check">
-                                                                                                                                            </div>
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                    <div
-                                                                                                                                        class="message-arrow">
+                                                                                                                                    class="message-time">
+                                                                                                                                    <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
+                                                                                                                </div>
+                                                                                                                <div
+                                                                                                                    class=" message-arrow">
                                                                                                                                         <i
                                                                                                                                             class="text-muted la la-angle-down fs-17"></i>
-                                                                                                                                    </div>
                                                                                                                                 </div>
                                                                                                                             </div>
-                                                                                                                        </div> <% } %>
+                                                                                                                        </div>
+                                                                                                                        <% }
+                                                                                                                            %>
 
-                                                                                                                        <%
-                                                                                                                            if(groupmsg[i].image){%>
-                                                                                                                            
-                                                                                                                            <div class="d-flex flex-row-reverse mb-2">
-                                                                                                                                
-                                                                                                                                <div class="right-chat-message fs-13 mb-2">
-                                                                                                                                    <span>
-                                                                                                                                <%=obj.name
-                                                                                                                                    %>
-                                                                                                                            </span>
+                                                                                                                            <%
+                                                                                                                                if(groupmsg[i].image){%>
+
+                                                                                                                                <div
+                                                                                                                                    class="left-chat-message fs-13 mb-2">
+                                                                                                                                    <img id="img"
+                                                                                                                                        src="/uploads<%=groupmsg[i].image %>"
+                                                                                                                                        style="height: 100px;"><br><br>
                                                                                                                                     <div
-                                                                                                                                        class="mb-0 mr-3 pr-4">
-                                                                                                                                        <div
-                                                                                                                                            class="d-flex flex-row">
-                                                                                                                                            <div
-                                                                                                                                                class="pr-2">
-                                                                                                                                                <img id="img" style=" width: 300px; "
-                                                                                                                                                    src="/uploads<%=groupmsg[i].image %>">
-                                                                                                                                            </div>
-                                                                                                                                            <div
-                                                                                                                                                class="pr-4">
-                                                                                                                                            </div>
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                    <div
-                                                                                                                                        class="message-options dark">
+                                                                                                                                        class="message-options">
                                                                                                                                         <div
                                                                                                                                             class="message-time">
-                                                                                                                                            <div
-                                                                                                                                                class="d-flex flex-row">
-                                                                                                                                                <div
-                                                                                                                                                    class="mr-2">
-                                                                                                                                                    <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
-                                                                                                                                                </div>
-                                                                                                                                                <div
-                                                                                                                                                    class="svg15 double-check">
-                                                                                                                                                </div>
-                                                                                                                                            </div>
-                                                                                                                                        </div>
-                                                                                                                                        <div
-                                                                                                                                            class="message-arrow">
-                                                                                                                                            <i
-                                                                                                                                                class="text-muted la la-angle-down fs-17"></i>
+                                                                                                                                            <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
+                                                                                                                </div>
+                                                                                                                <div
+                                                                                                                    class=" message-arrow">
+                                                                                                                                                <i
+                                                                                                                                                    class="text-muted la la-angle-down fs-17"></i>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                 </div>
-                                                                                                                            </div>
-                                                                                                                            <% }
-                                                                                                                                %>
-                                                                                                                                <% }
-                                                                                                                                    %>
-                                                                                                                                    <% })
+
+                                                                                                                                <%
+                                                                                                                                    }%>
+
+                                                                                                                                    <% }else{
                                                                                                                                         %>
-                                                                                                                                        <% }
+                                                                                                                                        <%
+                                                                                                                                            groupname.filter(obj=>
+                                                                                                                                            {
                                                                                                                                             %>
-                                                                                                                                            <% }
+
+                                                                                                                                            <% if(obj._id.toString()==groupmsg[i].from.toString()
+                                                                                                                                                )
+                                                                                                                                                {
                                                                                                                                                 %>
-                                                                                                                                                <% }
+                                                                                                                                                <% if(groupmsg[i].message)
+                                                                                                                                                    {
                                                                                                                                                     %>
+                                                                                                                                                    <div
+                                                                                                                                                        class="d-flex flex-row-reverse mb-2">
+
+                                                                                                                                                        <div
+                                                                                                                                                            class="right-chat-message fs-13 mb-2">
+                                                                                                                                                            <span>
+                                                                                                                                                                <%=obj.name
+                                                                                                                                                                    %>
+                                                                                                                                                            </span>
+                                                                                                                                                            <div
+                                                                                                                                                                class="mb-0 mr-3 pr-4">
+                                                                                                                                                                <div
+                                                                                                                                                                    class="d-flex flex-row">
+                                                                                                                                                                    <div
+                                                                                                                                                                        class="pr-2">
+                                                                                                                                                                        <%=groupmsg[i].message
+                                                                                                                                                                            %>
+                                                                                                                                                                    </div>
+                                                                                                                                                                    <div
+                                                                                                                                                                        class="pr-4">
+                                                                                                                                                                    </div>
+                                                                                                                                                                </div>
+                                                                                                                                                            </div>
+                                                                                                                                                            <div
+                                                                                                                                                                class="message-options dark">
+                                                                                                                                                                <div
+                                                                                                                                                                    class="message-time">
+                                                                                                                                                                    <div
+                                                                                                                                                                        class="d-flex flex-row">
+                                                                                                                                                                        <div
+                                                                                                                                                                            class="mr-2">
+                                                                                                                                                                            <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
+                                                                                                                                            </div>
+                                                                                                                                            <div
+                                                                                                                                                class=" svg15 double-check">
+                                                                                                                                                                        </div>
+                                                                                                                                                                    </div>
+                                                                                                                                                                </div>
+                                                                                                                                                                <div
+                                                                                                                                                                    class="message-arrow">
+                                                                                                                                                                    <i
+                                                                                                                                                                        class="text-muted la la-angle-down fs-17"></i>
+                                                                                                                                                                </div>
+                                                                                                                                                            </div>
+                                                                                                                                                        </div>
+                                                                                                                                                    </div>
+                                                                                                                                                    <% }
+                                                                                                                                                        %>
+
+                                                                                                                                                        <%
+                                                                                                                                                            if(groupmsg[i].image){%>
+
+                                                                                                                                                            <div
+                                                                                                                                                                class="d-flex flex-row-reverse mb-2">
+
+                                                                                                                                                                <div
+                                                                                                                                                                    class="right-chat-message fs-13 mb-2">
+                                                                                                                                                                    <span>
+                                                                                                                                                                        <%=obj.name
+                                                                                                                                                                            %>
+                                                                                                                                                                    </span>
+                                                                                                                                                                    <div
+                                                                                                                                                                        class="mb-0 mr-3 pr-4">
+                                                                                                                                                                        <div
+                                                                                                                                                                            class="d-flex flex-row">
+                                                                                                                                                                            <div
+                                                                                                                                                                                class="pr-2">
+                                                                                                                                                                                <img id="img"
+                                                                                                                                                                                    style=" width: 300px; "
+                                                                                                                                                                                    src="/uploads<%=groupmsg[i].image %>">
+                                                                                                                                                                            </div>
+                                                                                                                                                                            <div
+                                                                                                                                                                                class="pr-4">
+                                                                                                                                                                            </div>
+                                                                                                                                                                        </div>
+                                                                                                                                                                    </div>
+                                                                                                                                                                    <div
+                                                                                                                                                                        class="message-options dark">
+                                                                                                                                                                        <div
+                                                                                                                                                                            class="message-time">
+                                                                                                                                                                            <div
+                                                                                                                                                                                class="d-flex flex-row">
+                                                                                                                                                                                <div
+                                                                                                                                                                                    class="mr-2">
+                                                                                                                                                                                    <%=groupmsg[i].date.toLocaleTimeString().split(" ")[0].slice(0,5) %>
+                                                                                                                                                </div>
+                                                                                                                                                <div
+                                                                                                                                                    class=" svg15 double-check">
+                                                                                                                                                                                </div>
+                                                                                                                                                                            </div>
+                                                                                                                                                                        </div>
+                                                                                                                                                                        <div
+                                                                                                                                                                            class="message-arrow">
+                                                                                                                                                                            <i
+                                                                                                                                                                                class="text-muted la la-angle-down fs-17"></i>
+                                                                                                                                                                        </div>
+                                                                                                                                                                    </div>
+                                                                                                                                                                </div>
+                                                                                                                                                            </div>
+                                                                                                                                                            <% }
+                                                                                                                                                                %>
+                                                                                                                                                                <% }
+                                                                                                                                                                    %>
+                                                                                                                                                                    <% })
+                                                                                                                                                                        %>
+                                                                                                                                                                        <% }
+                                                                                                                                                                            %>
+                                                                                                                                                                            <% }
+                                                                                                                                                                                %>
+                                                                                                                                                                                <% }
+                                                                                                                                                                                    %>
 
                                     </div>
                                 </div>
@@ -743,10 +784,11 @@
                                         <input id="file" name="image" type="file" style="width: 20%;" />
                                         <img id=”preview” width=”100″></img>
                                         <% if(select){ %>
-                                            <button onclick="userfun('<%=select.id %>','<%= user._id %>')" > Send</button>
+                                            <button onclick="userfun('<%=select.id %>','<%= user._id %>')">
+                                                Send</button>
                                             <% }else{ %>
-                                                <button onclick="groupfun('<%=group._id %>','<%= user._id %>')" >
-                                                        Send</button>
+                                                <button onclick="groupfun('<%=group._id %>','<%= user._id %>')">
+                                                    Send</button>
                                                 <% } %>
                                     </form>
                                 </div>
@@ -761,8 +803,8 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script>
 
-   
-     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -802,7 +844,7 @@
             var reader = new FileReader();
             reader.onload = function (e) {
                 // client send
-                
+
                 socket.emit('sendImage', [{ base64: e.target.result }, chatwith.value, you.value]);
             }
             reader.readAsDataURL(selector.files[0]);
@@ -810,8 +852,8 @@
         // Client image receive
         socket.on('receiveImage', function (base64image, id, id2) {
             var imgvalue = base64image;
-            console.log(id2,"id2");
-            console.log(you.value,"youvalue");
+            console.log(id2, "id2");
+            console.log(you.value, "youvalue");
             const date = new Date()
             var img = `<a target="_blank" href="/uploads${base64image.path} "><img id="img" src="/uploads${base64image.path}" style="height: 100px;" /></a> <br><br>`;
             if (you.value == id2) {
@@ -854,7 +896,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>`;
-                                                                        $("#messages").append(item);
+                $("#messages").append(item);
                 window.scrollTo(100, document.body.scrollHeight);
             }
         });
@@ -865,14 +907,14 @@
                 e.preventDefault();
                 if (input.value) {
                     socket.emit('chat message', [input.value, id, id2]);
-                    input.value = "" 
-                 }
+                    input.value = ""
+                }
             });
         }
         // receve chat message  from server
         socket.on('chat message', function (msg, id, id2) {
             const date = new Date()
-           
+
             if (you.value == id2.toString()) {
                 var item = `<div class="left-chat-message fs-13 mb-2">
                                                 <p class="mb-0 mr-3 pr-4">${msg}</p>
@@ -882,7 +924,7 @@
                                                             class="text-muted la la-angle-down fs-17"></i></div>
                                                 </div>
                                             </div>`
-    
+
                 console.log(item, "item");
                 $('#messages').append(item);
                 window.scrollTo(100, document.body.scrollHeight);
@@ -906,10 +948,10 @@
                                                             </div>
                                                         </div>
                                                     </div>`
-    
+
                 $('#messages').append(item);
-            window.scrollTo(100, document.body.scrollHeight);
-        }
+                window.scrollTo(100, document.body.scrollHeight);
+            }
 
         });
 
@@ -924,7 +966,7 @@
             });
         }
 
-        socket.on('group chat message', function (msg,id,id2) {
+        socket.on('group chat message', function (msg, id, id2) {
             const date = new Date()
             if (you.value == id2.toString()) {
                 var item = `<div class="left-chat-message fs-13 mb-2">
@@ -935,7 +977,7 @@
                                                             class="text-muted la la-angle-down fs-17"></i></div>
                                                 </div>
                                             </div>`
-    
+
                 console.log(item, "item");
                 $('#messages').append(item);
                 window.scrollTo(100, document.body.scrollHeight);
@@ -959,10 +1001,10 @@
                                                             </div>
                                                         </div>
                                                     </div>`
-    
+
                 $('#messages').append(item);
-            window.scrollTo(100, document.body.scrollHeight);
-        }
+                window.scrollTo(100, document.body.scrollHeight);
+            }
         });
 
 

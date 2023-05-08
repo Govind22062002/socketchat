@@ -252,6 +252,7 @@ const messages = async (req, res) => {
     ])
     console.log(agreegateId, "agreegateId");
     const groupname = agreegateId[0]?.result
+    console.log(groupname ,"group name");
     const data = await registerModel.find()
     const id = `${user?._id}-${req.params.id}`
     const message = await chatModel.findOne({ chatId: { $in: id } })
